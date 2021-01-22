@@ -11,22 +11,26 @@ cargando = true;
 productos: Producto[] = [];
 
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
 
     this.cargarProductos();
   }
 
 
   private cargarProductos(){
-
     this.http.get('https://angular-html-2aed6-default-rtdb.firebaseio.com/productos_idx.json')
     .subscribe((resp:Producto[]) =>{
-        console.log(resp);
-        
+        // console.log(resp);
+
         this.productos = resp;
-        this.cargando = false;  
+        this.cargando = false;
 
     });
 
+  }
+
+
+  getProducto(id: String ){
+    return this,this.http.get(`https://angular-html-2aed6-default-rtdb.firebaseio.com/productos/${id}.json`)
   }
 }
