@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Producto } from '../interfaces/producto.interface';
+import { Producto } from '../Interfaces/producto.interfaces';
+import { resolve } from '../../../node_modules/@types/q';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class ProductosService {
     return new Promise<void>(  ( resolve, reject ) => {
 
       this.http.get('https://angular-html-25cf9.firebaseio.com/productos_idx.json')
-          .subscribe( (resp: Producto[]) => {
+          .subscribe( (resp: any) => {
             this.productos = resp;
             this.cargando = false;
             resolve();
